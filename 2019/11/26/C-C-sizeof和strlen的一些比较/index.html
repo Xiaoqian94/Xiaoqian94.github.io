@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="圆圈圈">
 <meta property="og:description" content="1.sizeof求的是数据类型所占空间的大小（不受其中存储内容的影响），而strlen是求字符串的长度。 2.sizeof的参数可以是变量也可以是数据类型，strlen的参数只能是以”\0”结尾的字符串。 3.编译器在编译的时候就计算出了sizeof的大小，而strlen只有在程序运行期间才能计算出字符串长度。 4.在子函数中，ziseof 会把从主函数中传进来的字符数组当作是指针来处理。 例如：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-26T03:29:30.940Z">
+<meta property="og:updated_time" content="2019-11-26T03:32:12.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C&#x2F;C++ sizeof和strlen的一些比较">
 <meta name="twitter:description" content="1.sizeof求的是数据类型所占空间的大小（不受其中存储内容的影响），而strlen是求字符串的长度。 2.sizeof的参数可以是变量也可以是数据类型，strlen的参数只能是以”\0”结尾的字符串。 3.编译器在编译的时候就计算出了sizeof的大小，而strlen只有在程序运行期间才能计算出字符串长度。 4.在子函数中，ziseof 会把从主函数中传进来的字符数组当作是指针来处理。 例如：">
@@ -184,7 +184,7 @@
 <p><strong>3.编译器在编译的时候就计算出了sizeof的大小，而strlen只有在程序运行期间才能计算出字符串长度。</strong></p>
 <p><span style="color:red">4.在子函数中，ziseof 会把从主函数中传进来的字符数组当作是指针来处理。</span></p>
 <p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> str[]=<span class="string">"hello"</span>;</span><br><span class="line">	<span class="keyword">char</span> str2[<span class="number">20</span>]=<span class="string">"hello"</span>;</span><br><span class="line">	<span class="keyword">char</span> *str3=<span class="string">"hello"</span>;</span><br><span class="line">	<span class="keyword">char</span> str4[]=&#123;<span class="string">'h'</span>,<span class="string">'e'</span>,<span class="string">'l'</span>,<span class="string">'l'</span>,<span class="string">'o'</span>,<span class="string">'\0'</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> str5[]=&#123;<span class="string">'h'</span>,<span class="string">'e'</span>,<span class="string">'l'</span>,<span class="string">'l'</span>,<span class="string">'o'</span>&#125;;</span><br><span class="line"> </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str),<span class="built_in">strlen</span>(str));	<span class="comment">//6	    5</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str2),<span class="built_in">strlen</span>(str2));	<span class="comment">//20    5</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str3),<span class="built_in">strlen</span>(str3));	<span class="comment">//4	    5</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str4),<span class="built_in">strlen</span>(str4));	<span class="comment">//6     5</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str5),<span class="built_in">strlen</span>(str5));	<span class="comment">//5 	不确定的数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> str[]=<span class="string">"hello"</span>;</span><br><span class="line">	<span class="keyword">char</span> str2[<span class="number">20</span>]=<span class="string">"hello"</span>;</span><br><span class="line">	<span class="keyword">char</span> *str3=<span class="string">"hello"</span>;</span><br><span class="line">	<span class="keyword">char</span> str4[]=&#123;<span class="string">'h'</span>,<span class="string">'e'</span>,<span class="string">'l'</span>,<span class="string">'l'</span>,<span class="string">'o'</span>,<span class="string">'\0'</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> str5[]=&#123;<span class="string">'h'</span>,<span class="string">'e'</span>,<span class="string">'l'</span>,<span class="string">'l'</span>,<span class="string">'o'</span>&#125;;</span><br><span class="line"> </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str),<span class="built_in">strlen</span>(str));	<span class="comment">//6	5</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str2),<span class="built_in">strlen</span>(str2));	<span class="comment">//20    5</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str3),<span class="built_in">strlen</span>(str3));	<span class="comment">//4	5</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str4),<span class="built_in">strlen</span>(str4));	<span class="comment">//6     5</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str5),<span class="built_in">strlen</span>(str5));	<span class="comment">//5	不确定的数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>说明：</p>
 <p> <span style="color:red;">str[]=”hello”：</span></p>
 <p>因为strlen测量的是字符串的长度，以遇到的第一个’\0’为结束标志，所以strlen(str)=5；而对sizeof来说，‘\0’也占用一个字节，所以sizeof(str)=6。</p>
@@ -446,11 +446,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -458,7 +458,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">机会</a>
+                <a href="javascript:void(0)" class="js-tag color3">鸡汤</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -466,11 +466,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">机会</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">鸡汤</a>
+                <a href="javascript:void(0)" class="js-tag color3">日记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -478,15 +482,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">自启动</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日记</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
             
             <div class="clearfix"></div>
