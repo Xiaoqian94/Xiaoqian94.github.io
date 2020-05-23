@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Fight for yourself | 圆圈圈</title>
+  <title>GDB调试总结 | 圆圈圈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="抱怨没有用，烦恼没有用，只有静下心来，认真学习。遭遇不公又怎么，付出努力没得到回报又怎样，如果你只会一味埋怨，那你就只能是loser了。想不用去舔，那就让自己强大。不要自己什么本事没有，看到别人舔还觉得看不起。你必须非常努力，才能看起来毫不费力。坚持一个月没，让自己看到变化。 所有学习上的成功，都只靠两件事：策略和坚持，而坚持本身就应该是最重要的策略。 坚持，其实就是重复；而重复，说到底就是时间的">
-<meta name="keywords" content="鸡汤">
+  <meta name="description" content="gcc gdbtest.c -o app -g 在编译的时候 gcc 加上-g 选项     1 gdb + a.out 进入调试   2 b(break)+行号 加断点   3 n(next) 单步执行   4 s(step) 执行下一行语句，有函数调用则进入到函数中   5 p+变量 打印变量   6 display+变量 跟踪变量   7 finish 从函数体内跳出   8 r(r">
+<meta name="keywords" content="GDB">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fight for yourself">
-<meta property="og:url" content="http://yoursite.com/2019/07/22/Fight-for-yourself/index.html">
+<meta property="og:title" content="GDB调试总结">
+<meta property="og:url" content="http://yoursite.com/2020/05/23/GDB调试总结/index.html">
 <meta property="og:site_name" content="圆圈圈">
-<meta property="og:description" content="抱怨没有用，烦恼没有用，只有静下心来，认真学习。遭遇不公又怎么，付出努力没得到回报又怎样，如果你只会一味埋怨，那你就只能是loser了。想不用去舔，那就让自己强大。不要自己什么本事没有，看到别人舔还觉得看不起。你必须非常努力，才能看起来毫不费力。坚持一个月没，让自己看到变化。 所有学习上的成功，都只靠两件事：策略和坚持，而坚持本身就应该是最重要的策略。 坚持，其实就是重复；而重复，说到底就是时间的">
+<meta property="og:description" content="gcc gdbtest.c -o app -g 在编译的时候 gcc 加上-g 选项     1 gdb + a.out 进入调试   2 b(break)+行号 加断点   3 n(next) 单步执行   4 s(step) 执行下一行语句，有函数调用则进入到函数中   5 p+变量 打印变量   6 display+变量 跟踪变量   7 finish 从函数体内跳出   8 r(r">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-22T12:35:10.909Z">
+<meta property="og:updated_time" content="2020-05-23T11:48:49.200Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fight for yourself">
-<meta name="twitter:description" content="抱怨没有用，烦恼没有用，只有静下心来，认真学习。遭遇不公又怎么，付出努力没得到回报又怎样，如果你只会一味埋怨，那你就只能是loser了。想不用去舔，那就让自己强大。不要自己什么本事没有，看到别人舔还觉得看不起。你必须非常努力，才能看起来毫不费力。坚持一个月没，让自己看到变化。 所有学习上的成功，都只靠两件事：策略和坚持，而坚持本身就应该是最重要的策略。 坚持，其实就是重复；而重复，说到底就是时间的">
+<meta name="twitter:title" content="GDB调试总结">
+<meta name="twitter:description" content="gcc gdbtest.c -o app -g 在编译的时候 gcc 加上-g 选项     1 gdb + a.out 进入调试   2 b(break)+行号 加断点   3 n(next) 单步执行   4 s(step) 执行下一行语句，有函数调用则进入到函数中   5 p+变量 打印变量   6 display+变量 跟踪变量   7 finish 从函数体内跳出   8 r(r">
   
     <link rel="alternative" href="/atom.xml" title="圆圈圈" type="application/atom+xml">
   
@@ -159,29 +159,92 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Fight-for-yourself" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-GDB调试总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Fight for yourself
+      GDB调试总结
     </h1>
   
 
         
-        <a href="/2019/07/22/Fight-for-yourself/" class="archive-article-date">
-  	<time datetime="2019-07-22T12:27:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-22</time>
+        <a href="/2020/05/23/GDB调试总结/" class="archive-article-date">
+  	<time datetime="2020-05-23T11:26:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>抱怨没有用，烦恼没有用，只有静下心来，认真学习。遭遇不公又怎么，付出努力没得到回报又怎样，如果你只会一味埋怨，那你就只能是loser了。想不用去舔，那就让自己强大。不要自己什么本事没有，看到别人舔还觉得看不起。你必须非常努力，才能看起来毫不费力。坚持一个月没，让自己看到变化。</p>
-<p>所有学习上的成功，都只靠两件事：策略和坚持，而坚持本身就应该是最重要的策略。</p>
-<p>坚持，其实就是重复；而重复，说到底就是时间的投入，我是说，大量的时间投入。</p>
+        <table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">gcc gdbtest.c -o app -g</th>
+<th style="text-align:center">在编译的时候 gcc 加上-g 选项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">gdb + a.out</td>
+<td style="text-align:center">进入调试</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">b(break)+行号</td>
+<td style="text-align:center">加断点</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">n(next)</td>
+<td style="text-align:center">单步执行</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">s(step)</td>
+<td style="text-align:center">执行下一行语句，有函数调用则进入到函数中</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">p+变量</td>
+<td style="text-align:center">打印变量</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">display+变量</td>
+<td style="text-align:center">跟踪变量</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">finish</td>
+<td style="text-align:center">从函数体内跳出</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">r(run)</td>
+<td style="text-align:center">运行代码</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">info b</td>
+<td style="text-align:center">查看断点信息</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">q(quit)</td>
+<td style="text-align:center">退出调试</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">delete+行号</td>
+<td style="text-align:center">删除断电</td>
+</tr>
+</tbody>
+</table>
 
       
 
@@ -226,7 +289,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">鸡汤</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GDB</a>
         		</li>
       		
 		</ul>
@@ -282,7 +345,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/22/Fight-for-yourself/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/23/GDB调试总结/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -296,18 +359,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/03/Last-chance/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Last chance!
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/20/七月杂记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">七月杂记</div>
+    <a href="/2019/12/30/Linux常用命令-四/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux常用命令(四)</div>
       <i class="icon-circle-right"></i>
     </a>
   
