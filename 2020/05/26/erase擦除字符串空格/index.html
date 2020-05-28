@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>erase擦除字符串空格 | 圆圈圈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="string::erase共三种用法： 123iterator erase( iterator pos );iterator erase( iterator start, iterator end );basic_string &amp;amp;erase( size_type index = 0, size_type num = npos ); 今年用的是第一种： 1234567string str =">
+  <meta name="description" content="string::erase共三种用法： 123iterator erase( iterator pos );iterator erase( iterator start, iterator end );basic_string &amp;amp;erase( size_type index = 0, size_type num = npos ); 今天用的是第一种： 1234567string str =">
 <meta name="keywords" content="删除字符串空格">
 <meta property="og:type" content="article">
 <meta property="og:title" content="erase擦除字符串空格">
 <meta property="og:url" content="http://yoursite.com/2020/05/26/erase擦除字符串空格/index.html">
 <meta property="og:site_name" content="圆圈圈">
-<meta property="og:description" content="string::erase共三种用法： 123iterator erase( iterator pos );iterator erase( iterator start, iterator end );basic_string &amp;amp;erase( size_type index = 0, size_type num = npos ); 今年用的是第一种： 1234567string str =">
+<meta property="og:description" content="string::erase共三种用法： 123iterator erase( iterator pos );iterator erase( iterator start, iterator end );basic_string &amp;amp;erase( size_type index = 0, size_type num = npos ); 今天用的是第一种： 1234567string str =">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-05-26T01:54:09.823Z">
+<meta property="og:updated_time" content="2020-05-26T01:55:57.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="erase擦除字符串空格">
-<meta name="twitter:description" content="string::erase共三种用法： 123iterator erase( iterator pos );iterator erase( iterator start, iterator end );basic_string &amp;amp;erase( size_type index = 0, size_type num = npos ); 今年用的是第一种： 1234567string str =">
+<meta name="twitter:description" content="string::erase共三种用法： 123iterator erase( iterator pos );iterator erase( iterator start, iterator end );basic_string &amp;amp;erase( size_type index = 0, size_type num = npos ); 今天用的是第一种： 1234567string str =">
   
     <link rel="alternative" href="/atom.xml" title="圆圈圈" type="application/atom+xml">
   
@@ -181,7 +181,7 @@
       
         <p>string::erase共三种用法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">( iterator pos )</span></span>;</span><br><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">( iterator start, iterator end )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">erase</span><span class="params">( size_type index = <span class="number">0</span>, size_type num = npos )</span></span>;</span><br></pre></td></tr></table></figure>
-<p>今年用的是第一种：</p>
+<p>今天用的是第一种：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> str = <span class="string">"s ab ss"</span>;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.size(); i++)</span><br><span class="line">	<span class="keyword">if</span> (str[i] == <span class="string">' '</span>)</span><br><span class="line">		str.erase(str.begin() + i);</span><br><span class="line">		</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; str &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
 <p>输出显示</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sabss</span><br></pre></td></tr></table></figure>
@@ -299,6 +299,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/05/28/二叉树的最大深度/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          二叉树的最大深度
+        
+      </div>
+    </a>
   
   
     <a href="/2020/05/23/GDB调试总结/" id="article-nav-older" class="article-nav-link-wrap">
@@ -428,23 +437,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">机会</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sizeof、strlen</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">出图</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">鸡汤</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">机会</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -460,11 +469,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">鸡汤</a>
+                <a href="javascript:void(0)" class="js-tag color4">sizeof、strlen</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GDB</a>
+                <a href="javascript:void(0)" class="js-tag color3">二叉树最大深度</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -477,6 +486,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GDB</a>
               </li>
              
               <li class="article-tag-list-item">
