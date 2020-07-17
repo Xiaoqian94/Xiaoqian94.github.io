@@ -156,6 +156,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C-C-sizeof和strlen的一些比较" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/26/C-C-sizeof和strlen的一些比较/">C/C++ sizeof和strlen的一些比较</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/26/C-C-sizeof和strlen的一些比较/" class="archive-article-date">
+  	<time datetime="2019-11-26T02:42:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1.sizeof求的是数据类型所占空间的大小（不受其中存储内容的影响），而strlen是求字符串的长度。</strong></p>
+<p><strong>2.sizeof的参数可以是变量也可以是数据类型，strlen的参数只能是以”\0”结尾的字符串。</strong></p>
+<p><strong>3.编译器在编译的时候就计算出了sizeof的大小，而strlen只有在程序运行期间才能计算出字符串长度。</strong></p>
+<p><span style="color:red">4.在子函数中，ziseof 会把从主函数中传进来的字符数组当作是指针来处理。</span></p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> str[]=<span class="string">"hello"</span>;</span><br><span class="line">	<span class="keyword">char</span> str2[<span class="number">20</span>]=<span class="string">"hello"</span>;</span><br><span class="line">	<span class="keyword">char</span> *str3=<span class="string">"hello"</span>;</span><br><span class="line">	<span class="keyword">char</span> str4[]=&#123;<span class="string">'h'</span>,<span class="string">'e'</span>,<span class="string">'l'</span>,<span class="string">'l'</span>,<span class="string">'o'</span>,<span class="string">'\0'</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> str5[]=&#123;<span class="string">'h'</span>,<span class="string">'e'</span>,<span class="string">'l'</span>,<span class="string">'l'</span>,<span class="string">'o'</span>&#125;;</span><br><span class="line"> </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str),<span class="built_in">strlen</span>(str));	<span class="comment">//6	5</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str2),<span class="built_in">strlen</span>(str2));	<span class="comment">//20    5</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str3),<span class="built_in">strlen</span>(str3));	<span class="comment">//4	5</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str4),<span class="built_in">strlen</span>(str4));	<span class="comment">//6     5</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d strlen:%d\n"</span>,<span class="keyword">sizeof</span>(str5),<span class="built_in">strlen</span>(str5));	<span class="comment">//5	不确定的数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<p> <span style="color:red;">str[]=”hello”：</span></p>
+<p>因为strlen测量的是字符串的长度，以遇到的第一个’\0’为结束标志，所以strlen(str)=5；而对sizeof来说，‘\0’也占用一个字节，所以sizeof(str)=6。</p>
+<p> <span style="color:red;">char str2[20]=”hello”：</span></p>
+<p>因为strlen测量的是字符串的长度，以遇到的第一个’\0’为结束标志，所以strlen(str2)=5；sizeof计算的是分配的数组str2[20]所占空间的大小，不受存储内容的影响，sizeof(str2)=20。</p>
+<p> <span style="color:red;">char *str3=”hello”：</span></p>
+<p>sizeof(str3)返回指针大小，在32位系统下指针大小为4字节，因此sizeof(str3)=4。</p>
+<p> <span style="color:red;">char str4[]={‘h’,’e’,’l’,’l’,’o’,’\0’}</span></p>
+<p> <span style="color:red;">和char str5[]={‘h’,’e’,’l’,’l’,’o’}：</span></p>
+<p><strong>我们知道字符串是以 ‘\0’ 为结束标志的，所以char str[ ] = “hello” 等效于char str4[ ] = {‘h’ , ‘e’ , ‘l’ , ‘l’ , ‘o’ , ‘\0’} 。strlen函数求的是字符串的实际长度，它求得方法是从开始到遇到第一个’\0’，如果你只定义没有给它赋初值，这个结果是不定的，它会从首地址一直找下去，直到遇到’\0’停止。而如果不在字符数组初始化的时候加上’\0’，那么strlen得到的值就不是正确的数值，打印出来的结果也不是想要的结果。因此我们要避免这种情况，在初始化的时候要记得加上’\0’，或者一次性赋初值。</strong></p>
+<p>现在注意这一句：<strong>在子函数中，ziseof 会把从主函数中传进来的字符数组当作是指针来处理。</strong></p>
+<p>而指针的大小又是取决于机器，而非人为决定的。看下面这个例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">size_of</span><span class="params">(<span class="keyword">char</span> str[])</span></span></span><br><span class="line"><span class="function"></span>&#123;    </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"sizeof:%d\n"</span>, <span class="keyword">sizeof</span>(str));</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> str[<span class="number">20</span>] = <span class="string">"hello"</span>;     </span><br><span class="line">	size_of(str);     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 这个例子输出结果为：sizeof：4 </p>
+<p>原文链接：<a href="https://blog.csdn.net/shimadear/article/details/83306539" target="_blank" rel="noopener">https://blog.csdn.net/shimadear/article/details/83306539</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sizeof、strlen</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/26/C-C-sizeof和strlen的一些比较/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux常用命令-三" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -889,136 +983,6 @@
 
 
   
-    <article id="post-Linux常用命令-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/11/Linux常用命令-一/">Linux常见的7个命令</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/11/Linux常用命令-一/" class="archive-article-date">
-  	<time datetime="2019-10-11T09:27:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <table>
-<thead>
-<tr>
-<th style="text-align:left">序号</th>
-<th>命令</th>
-<th>对应英文</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">01</td>
-<td>ls</td>
-<td>list</td>
-<td>查看当前文件夹下的内容</td>
-</tr>
-<tr>
-<td style="text-align:left">02</td>
-<td>pwd</td>
-<td>print work directory</td>
-<td>查看当前所在文件夹</td>
-</tr>
-<tr>
-<td style="text-align:left">03</td>
-<td>cd[目录名]</td>
-<td>change director</td>
-<td>切换文件夹</td>
-</tr>
-<tr>
-<td style="text-align:left">04</td>
-<td>touch[文件名]</td>
-<td>touch</td>
-<td>如果文件不存在，新建文件</td>
-</tr>
-<tr>
-<td style="text-align:left">05</td>
-<td>mkdir[目录名]</td>
-<td>make director</td>
-<td>创建目录</td>
-</tr>
-<tr>
-<td style="text-align:left">06</td>
-<td>rm[文件名]</td>
-<td>remove</td>
-<td>删除指定的文件名</td>
-</tr>
-<tr>
-<td style="text-align:left">07</td>
-<td>clear</td>
-<td>clear</td>
-<td>清屏</td>
-</tr>
-</tbody>
-</table>
-<p>小技巧：</p>
-<p>Ctrl + shift + = 放大终端窗口的字体显示</p>
-<p>Ctrl +  - 缩小终端窗口的字体显示</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/11/Linux常用命令-一/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1120,7 +1084,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sizeof、strlen</a>
+                <a href="javascript:void(0)" class="js-tag color3">总结</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1132,6 +1096,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sizeof、strlen</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">鸡汤</a>
               </li>
              
@@ -1140,11 +1108,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">机会</a>
+                <a href="javascript:void(0)" class="js-tag color3">出图</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">出图</a>
+                <a href="javascript:void(0)" class="js-tag color3">机会</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1168,19 +1136,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树的后序遍历</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">二叉树最大深度</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">自启动</a>
+                <a href="javascript:void(0)" class="js-tag color4">二叉树的后序遍历</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">消息中间件、C语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">自启动</a>
               </li>
              
               <li class="article-tag-list-item">
